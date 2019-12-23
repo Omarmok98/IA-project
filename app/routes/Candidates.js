@@ -1,20 +1,31 @@
 const express = require('express')
+const multer = require('multer');
+const path = require('path')
+
+const CandidateController = require('../controllers/CandidateControllers.js');
+const router = express.Router();
 
 
-module.exports = (app) => {
-    const usersController = require('../controllers/CandidateControllers.js');
-    const router = express.Router()
-    
-   /*  router.get("/", usersController.get);
-    router.get("/:id", usersController.getById);
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
 
-    app.post("/v1/auth/create", usersController.create);
-    
-    router.patch("/:id", usersController.update)
-
-    router.delete("/:id", usersController.delete);
+        cb(null, './upload_files')
         
-    app.post("/v1/auth", usersController.login);
-    app.use("/api/v1/users", router) */
-    
-}
+
+    },
+    filename: function (req, file, cb) {
+        let trimmedTitle = req.body.title.replace(/\s/g, "-");
+        cb(null,  trimmedTitle + "-" + Date.now() + path.extname(file.originalname))
+    }
+})
+
+const upload = multer({
+    storage: storage
+})
+
+
+router.post("/signup", upload.single("CV"), CandidateController.signUp);
+//router.post("/login", CandidateController.login);
+
+
+module.exports = router;

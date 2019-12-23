@@ -1,10 +1,14 @@
 const express = require('express');
-const app = express()
+const bodyParser = require('body-parser');
+const app = express();
 
-app.use((req, res, next) => {
-    res.status(200).json({
-        message:"it works"
-    })
-})
+const Candidates = require('./app/routes/Candidates.js');
 
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.get('/', (req, res) => {
+    res.render("index.ejs");
+});
+
+app.use('/Candidates', Candidates);
 module.exports = app;

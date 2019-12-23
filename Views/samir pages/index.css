@@ -1,0 +1,33 @@
+.bg1{
+	background-image: url("http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg");
+	background-size: cover;
+	height: 600px;
+}
+.nv0{
+	margin-left: 900px;
+	padding-left: 30px;
+	
+}
+.a0{
+	color: yellow !important;
+	font-family:Gabriola;
+	font-size: 50px !important; 
+}
+.bg2{
+	color: white;
+	text-align: center;
+	margin-top: 300px;
+}
+.bg3{
+	text-align: center;
+	margin-top: 100px;
+}
+.x1{
+	color: orange;
+}
+.p1{
+	color: grey;
+}
+.hd1{
+	font-family: Arial Black;
+}
